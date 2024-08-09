@@ -1,3 +1,4 @@
+import { existsSync } from 'fs';
 import { availableParallelism } from 'os';
 import { extname, resolve } from 'path';
 import { Worker } from 'worker_threads';
@@ -17,6 +18,26 @@ const log = (...message: Array<any>) => {
 export const debugMode = (value: boolean) => {
   DEBUG = value;
 };
+
+function getWorkerPath(workerFile: string) {
+  const __filepath = workerFile.slice(0, -extname(workerFile).length);
+  const __extension = extname(__filename);
+  let __workerPath = resolve(BASE_PATH, `${__filepath}${__extension}`);
+
+  if (existsSync(__workerPath)) {
+    return __workerPath;
+  }
+
+  for (const extension of ['js', 'cjs', 'mjs']) {
+    __workerPath = resolve(BASE_PATH, `${__filepath}.${extension}`);
+
+    if (existsSync(__workerPath)) {
+      return __workerPath;
+    }
+  }
+
+  throw new Error(`Worker script not found: ${workerFile}`);
+}
 
 /**
  * Executes a worker function for each element in the array in parallel.
@@ -53,9 +74,7 @@ export function workerForEach<T>(
   options?: { maxWorkers?: number },
 ): Promise<void> {
   return new Promise<void>((__resolve) => {
-    const __filepath = workerFile.slice(0, -extname(__filename).length);
-    const __extension = extname(__filename);
-    const __workerPath = resolve(BASE_PATH, `${__filepath}${__extension}`);
+    const __workerPath = getWorkerPath(workerFile);
 
     const __maxWorkers = options?.maxWorkers || availableParallelism();
 
@@ -172,9 +191,7 @@ export function workerForEach<T>(
  */
 export function worker<T>(workerFile: string, workerData: T): Promise<T> {
   return new Promise((__resolve, __reject) => {
-    const __filepath = workerFile.slice(0, -extname(__filename).length);
-    const __extension = extname(__filename);
-    const __workerPath = resolve(BASE_PATH, `${__filepath}${__extension}`);
+    const __workerPath = getWorkerPath(workerFile);
 
     const __worker = new Worker(__workerPath, { workerData });
     __worker.on('message', __resolve);
