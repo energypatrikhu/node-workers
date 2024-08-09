@@ -1,0 +1,30 @@
+{
+  "name": "@energypatrikhu/node-workers",
+  "version": "0.0.0",
+  "main": "build/index.js",
+  "scripts": {
+    "build": "esbuild-wrapper && tsc",
+    "np": "npm run build && np --no-tests --no-cleanup"
+  },
+  "files": [
+    "build"
+  ],
+  "devDependencies": {
+    "@energypatrikhu/esbuild-wrapper": "^0.0.6",
+    "@types/node": "^22.1.0",
+    "np": "^10.0.7",
+    "typescript": "^5.5.4"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/energypatrikhu/node-workers.git"
+  },
+  "bugs": {
+    "url": "https://github.com/energypatrikhu/node-workers/issues"
+  },
+  "homepage": "https://github.com/energypatrikhu/node-workers",
+  "license": "MIT",
+  "publishConfig": {
+    "access": "public"
+  }
+}
