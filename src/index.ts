@@ -56,7 +56,7 @@ export function workerForEach<T>({
   workerData: T[] | Set<T> | Map<any, T>;
   workers?: number;
   logging?: boolean;
-  callback?: (index: number, data: any) => void | Promise<void>;
+  callback?: (data: any, index: number) => any | Promise<any>;
 }): Promise<void> {
   return new Promise<void>((__resolve) => {
     const log = (...message: any[]) => {
@@ -143,7 +143,7 @@ export function workerForEach<T>({
 
         if (callback) {
           log(`Executing callback for entry index: ${entryIndex}`);
-          callback(entryIndex, data);
+          callback(data, entryIndex);
         }
 
         removeEntryByIndex(entryIndex);
