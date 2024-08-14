@@ -1,13 +1,11 @@
 {
-	"inputFiles": [
-		"src/index.ts"
-	],
-	"outputDir": "build",
-	"options": {
-		"platform": "node",
-		"logLevel": "warning",
-		"treeShaking": true,
-		"minify": true,
-		"format": "cjs"
-	}
+  "inputFiles": ["src/index.ts"],
+  "outDir": "build",
+  "options": {
+    "platform": "node",
+    "logLevel": "warning",
+    "treeShaking": true,
+    "minify": true,
+    "format": "cjs"
+  }
 }

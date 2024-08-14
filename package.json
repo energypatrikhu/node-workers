@@ -10,8 +10,8 @@
     "build"
   ],
   "devDependencies": {
-    "@energypatrikhu/esbuild-wrapper": "^0.0.6",
-    "@types/node": "^22.1.0",
+    "@energypatrikhu/esbuild-wrapper": "^0.0.8",
+    "@types/node": "^22.3.0",
     "np": "^10.0.7",
     "typescript": "^5.5.4"
   },
