@@ -54,8 +54,8 @@ export function workerForEach<T>({
 }: {
   workerFile: string;
   workerData: T[] | Set<T> | Map<any, T>;
-  workers: number;
-  logging: boolean;
+  workers?: number;
+  logging?: boolean;
   callback?: (index: number, data: any) => void | Promise<void>;
 }): Promise<void> {
   return new Promise<void>((__resolve) => {
