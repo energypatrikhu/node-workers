@@ -6,6 +6,7 @@
     "logLevel": "warning",
     "treeShaking": true,
     "minify": true,
-    "format": "cjs"
+    "format": "cjs",
+    "outExtension": "js"
   }
 }
