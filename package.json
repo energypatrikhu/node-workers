@@ -1,7 +1,7 @@
 {
   "name": "@energypatrikhu/node-workers",
   "version": "0.0.6",
-  "main": "build/index.cjs",
+  "main": "build/index.js",
   "scripts": {
     "build": "esbuild-wrapper && tsc",
     "np": "npm run build && np --no-tests --no-cleanup"
