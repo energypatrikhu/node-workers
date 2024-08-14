@@ -1,6 +1,6 @@
 {
   "name": "@energypatrikhu/node-workers",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "main": "build/index.js",
   "scripts": {
     "build": "esbuild-wrapper && tsc",
